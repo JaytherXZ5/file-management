@@ -4,16 +4,18 @@
 
        <main class="flex flex-col flex-1 px-4 overflow-hidden">
             <div class="flex items-center justify-between w-full">
-                
-            </div>
+                <SearchForm />
+                <UserSettingsDropdown />
+            </div> 
        </main>
 
     </div>
 </template>
 <script>
 
-import Navigation from '../Components/Navigation.vue';
-
+import Navigation from '../Components/app/Navigation.vue';
+import SearchForm from '../Components/app/SearchForm.vue';
+import UserSettingsDropdown from '../Components/app/UserSettingsDropdown.vue';
 export default {
     //////////////////////Variables////////////////////////
     data(){
@@ -24,7 +26,9 @@ export default {
 
     ///////////////////////Components////////////////////////
     components:{
-        Navigation
+        Navigation,
+        SearchForm,
+        UserSettingsDropdown
     },
     
     /////////////////////Methods//////////////////////////
