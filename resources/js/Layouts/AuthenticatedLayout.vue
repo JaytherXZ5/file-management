@@ -6,7 +6,10 @@
             <div class="flex items-center justify-between w-full">
                 <SearchForm />
                 <UserSettingsDropdown />
-            </div> 
+            </div>
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <slot />
+            </div>
        </main>
 
     </div>
