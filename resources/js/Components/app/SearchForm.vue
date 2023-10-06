@@ -1,39 +1,22 @@
 <template>
-    <div>
-       SearchForm
-    </div>
+    <form class="w-[600px] h-[80px] flex items-center  ">
+        <TextInput type="text" class="block w-full mr-2"
+                                 v-model="form.search"
+                                  autocomplete
+                                   placeholder="Search for Files and Folders "/>
+    </form>
+        
 </template>
-<script>
+<script setup>
 
-export default {
-    //////////////////////Variables////////////////////////
-    data(){
-        return {
+import TextInput from '../TextInput.vue';
+import {useForm} from '@inertiajs/vue3';
 
-        }
-    },
-
-    ///////////////////////Components////////////////////////
-    components:{
-
-    },
-    
-    /////////////////////Methods//////////////////////////
-    methods: {
-        
-    },
-    ////////////////////Mounted///////////////////////////
-    mounted() {
-        
-    },
-    /////////////////////Computed/////////////////////////
-    computed:{
-
-    },
+const form = useForm({
+    search: ''
+});
 
    
-
-}   
 </script>
 <style lang="">
     
