@@ -1,20 +1,22 @@
 <template>
     <!-------------------------------------SET TAILWIND -------------------------------------------->
+    
     <nav class="min-w-[200px]">
-        <div class="h-[80px] px-3 flex items-center gap-3 border border-black">
-            <Link href="/">
+        <div class="h-[80px] px-3 flex items-center gap-3 border">
+            <Link :href="route('myFiles')" class="h-[80px] px-3 flex items-center gap-3 ">
                <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800"/>
             </Link>
             MARIANO MARCOS STATE UNIVERSITY
             
 
         </div>
-        <div class="px-3 border border-black">
+
+        <div class="px-3 border">
             <!------------NAVIGATION------------------------------------------------------->
             <CreateNewDropdown />
 
-            <div class="py-3">
-                <NavLink href="/" >My Files</NavLink>
+            <div class="py-3">              <!--if page url is eaquals to /my-files use ? computed() tailwind code Navlink.vue-->
+                <NavLink :href="route('myFiles')" :active="$page.url === '/my-files'" >My Files</NavLink>
                 <NavLink href="/" >Shared with Me</NavLink>
                 <NavLink href="/" >Shared by me</NavLink>
                 <NavLink href="/" >Trash</NavLink>
