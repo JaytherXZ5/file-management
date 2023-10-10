@@ -5,7 +5,7 @@
                 Create New Folder
             </h2>
             <div class="mt-6">
-                <InputLabel for="folderName" value="Folder Name" class="sr-only"/>
+                <InputLabel for="folderName" value="Folder Name" class="sr-only" ref="folderNameInput"/>
                  <TextInput type="text" 
                             id="folderName"  
                             v-model="form.name"
@@ -17,7 +17,14 @@
                     <InputError :message="form.errors.name" class="mt-2" />
             </div>
             <div class="mt-6 flex justify-end">
-                <SecondaryButton>Cancel</SecondaryButton>
+                <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                <PrimaryButton 
+                                class="ml-3"
+                                :class="{'opacity-25': form.processing}"
+                                @click="createFolder" 
+                                :disable="form.processing">
+                    Create
+                </PrimaryButton>
             </div>
 
         </div>
@@ -32,6 +39,8 @@ import TextInput from '../TextInput.vue';
 import InputError from '../InputError.vue';
 import { useForm } from '@inertiajs/vue3';
 import SecondaryButton from '../SecondaryButton.vue';
+import PrimaryButton from '../PrimaryButton.vue';
+import { ref } from 'vue';
 const {modelValue} = defineProps({
     modelValue: Boolean 
 })
@@ -41,12 +50,22 @@ const form = useForm({
     name: ''
 })
 
+//Refs
+const folderNameInput = ref(null)
 const emit = defineEmits(['update:modelValue'])
 
 //Methods
 
 function createFolder(){
-    console.log("Create Folder");  
+    form.post(route('folder.create'), {
+        preserveScroll:true,
+        onSuccess:() => {
+            closeModal()
+            form.reset();
+
+        },
+        onError: () => folderNameInput.value.focus()
+    })
 }
 
 function closeModal(){
